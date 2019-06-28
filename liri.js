@@ -6,6 +6,7 @@ var spotify = new Spotify(keys.spotify);
 var fs = require("fs");
 var axios = require("axios");
 input = "";
+booger = 0
 
 action = process.argv[2];
 input = input + process.argv.slice(3).join(" ");
@@ -42,6 +43,7 @@ function concert(input) {
               });
         }
       );
+      return;
     };
     
 function spotifysearch(input) {
@@ -49,10 +51,6 @@ function spotifysearch(input) {
             if (err) {
                 return console.log('Error occurred: ' + err);
             }
-            // if (input === "") {
-            //     input = "the sign";
-            //     console.log("No input detected. Searching for " + input + " instead");
-            // }
             console.log("\nSpotify song info for: " + input)
             console.log("\n----------------------------");
             console.log("\nArtist Name(s): " + data.tracks.items[0].artists[0].name)
@@ -67,6 +65,7 @@ function spotifysearch(input) {
               });
             // console.log(data.tracks.items[0]); 
         });
+        return;
 };
 
 function moviesearch(input) {
@@ -90,64 +89,96 @@ function moviesearch(input) {
           });
     }
     );
+    return;
 };
 
 // console.log(input);
-// if (input.length)  > 1) {
-//     input = "lady gaga";
-//     console.log("No input detected. Searching for " + input + " instead");
-// }  
+if (input.length > 0) {
+    booger = 1;
+};
+
+for (loop = 0; loop < 2; loop++) {
+
+    if (action === "concert-this" && !input && booger === 0) {
+        input = "lady gaga";
+        console.log("No input detected. Searching for " + input + " instead");
+    booger = 1;
+};  
+if (action === "concert-this" && booger === 1) {
+    concert(input);
+    loop = 2;
+};
+if (action === "spotify-this-song" && !input && booger === 0) {
+    input = "the sign";
+    console.log("No input detected. Searching for " + input + " instead");
+    booger = 1;
+};
+if (action === "spotify-this-song" && booger === 1) {
+    spotifysearch(input);
+    loop = 2;
+};
+if (action === "movie-this" && !input && booger === 0) {
+    input = "mr nobody";
+    console.log("No input detected. Searching for " + input + " instead");
+    booger = 1;
+};
+if (action === "movie-this" && booger === 1) {
+    moviesearch(input);
+    loop = 2;
+}
+if (typeof action === 'undefined') {
+    console.log("try a command that doens't suck next time LOOSER");
+};
+
 if (action === "do-what-it-says") {
     fs.readFile("random.txt", "utf8", function(error, data) {
         if (error) {
             return console.log(error);
-        }
-        // console.log(data);
-        var dataArr = data.split(",");
-        var rand = parseInt(Math.random()*dataArr.length)+1
-        console.log(rand);
-        if (rand === dataArr.length) {rand = 0};
-        if (rand === dataArr.length-1) {rand = 0};
-        if (rand % 2 == 0) {
-            action = dataArr[rand];
-            input = dataArr[rand+1];
-        }
-        else {
-            action = dataArr[rand+1];
-            input = dataArr[rand+2];
-
-        };
-        String.prototype.unquoted = function (){return this.replace (/(^")|("$)/g, '')};
+    }
+    // console.log(data);
+    var dataArr = data.split(",");
+    var rand = parseInt(Math.random()*dataArr.length)+1
+    console.log(rand);
+    if (rand === dataArr.length) {rand = 0};
+    if (rand === dataArr.length-1) {rand = 0};
+    if (rand % 2 == 0) {
+        action = dataArr[rand];
+        input = dataArr[rand+1];
+    }
+    else {
+        action = dataArr[rand+1];
+        input = dataArr[rand+2];
+        
+    };
+    String.prototype.unquoted = function (){return this.replace (/(^")|("$)/g, '')};
     
-        // var str='"hello"'
+    // var str='"hello"'
 
-        // console.log(input.unquoted());
-        // console.log(dataArr);
-        // console.log(action, input);
-        console.log("\nOk, I chosen the following command for you:");
-        console.log(action, input);
-        console.log("\n----------------------------");
-        if (action === "concert-this") {
-            concert(input);
-        }
-        else if (action === "spotify-this-song") {
-            spotifysearch(input);
-        }
-        else if (action === "movie-this") {
-           moviesearch(input);
-        }
-      });
-}
-else if (action === "concert-this") {
-    concert(input);
-}
-else if (action === "spotify-this-song") {
-    spotifysearch(input);
-}
-else if (action === "movie-this") {
-    moviesearch(input);
-}
-
-else {
-    console.log("try a command that doens't suck next time LOOSER");
+    // console.log(input.unquoted());
+    // console.log(dataArr);
+    // console.log(action, input);
+    console.log("\nOk, I chosen the following command for you:");
+    console.log(action, input);
+    console.log("\n----------------------------");
+    if (action === "concert-this") {
+        concert(input);
+        loop = 2;
+        booger = 3;
+        
+    }
+    else if (action === "spotify-this-song") {
+        spotifysearch(input);
+        loop = 2;
+        booger = 3;
+        
+    }
+    else if (action === "movie-this") {
+        moviesearch(input);
+        loop = 2;
+        booger = 3;
+        
+    }
+});
+break;
 };
+}

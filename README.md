@@ -1,5 +1,5 @@
 liri-node-app
-This project is a siri clone, except for a command line interface. It will take several different commands and arguments and then run the argument through the appropriate API to generate a response which is then output to the screen.
+This project is a siri clone, except for a command line interface. It will take several different commands and arguments and then run the argument through the appropriate API to generate a response which is then output to the screen. If no arguments are given, default values will be substituted.
 
 Getting Started
 To run the program, first install the correct dependencies with npm. A package.json file is supplied. You will need to provide your own API keys and place them in the keys.js file with the following syntax:
@@ -22,6 +22,7 @@ movie-this <?>
 do-what-it-says
 
 Test Videos:
+https://youtu.be/OQJUa90TNFE
 
 Deployment
 Navigate to https://github.com/aaaronmiller/liri-node-app to clone.
@@ -33,9 +34,8 @@ Versioning
 We use github for version control (https://github.com/your/project/tags).
 
 In development
-    -input is not verified, if the data in undefined or does not exist in the API database will return errors.
-    -currently the end case where a user fails to input data fails to default to a predefined value due to the asynchronous nature of node.js
-    -the randomize function will not call the first or last values in the array due to how it chooses if the random number refers to a command or search string; the result is increased by 1 if it does not align properly which then never chooses value 0 and is undefined if the value is the maximum.
+    -input is not verified, if the search term does not exist in the API database it will return errors.
+    -the randomize function will not call the first or last values in the array due to how it chooses if the  number refers to a command or search in the array; the result is increased by 1 if it does not align properly which then never chooses value 0 and is undefined if the value is the maximum.
     -the randomize function will not work with movies or concerts because of an asyncronous error where removing the quotes from the input variable is executed after the associated API request.
 
 Author
