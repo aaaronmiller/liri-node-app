@@ -18,8 +18,11 @@ Node.js must be installed on machine. See https://nodejs.org/en/download/ for in
 Please see the homework instructions for full installation requirements. Once installed, the following commands are recognized:
 
 concert-this <?>
+
 spotify-this-song <?>
+
 movie-this <?>
+
 do-what-it-says
 
 # Test Videos:
@@ -36,7 +39,9 @@ We use github for version control (https://github.com/your/project/tags).
 
 # In development
 -input is not verified, if the data in undefined or does not exist in the API database will return errors.
+
 -the randomize function will not call the first or last values in the array due to how it chooses if the random number refers to a command or search string; the result is increased by 1 if it does not align properly which then never chooses value 0 and is undefined if the value is the maximum.
+
 -the randomize function will not work with movies or concerts because of an asyncronous error where removing the quotes from the input variable is executed after the associated API request.
 
 # Author
@@ -46,13 +51,19 @@ Aaron Miller
 This project is not licensed.
 
 # Acknowledgments
+
 Joe Rehfuss
+
 Trae Shanks
+
 Lan Truong
+
 James Hanley
 
 # The LIRI app uses the following APIs:
 
 Bands in Town Artist Events API
+
 Spotify
+
 OMDB
