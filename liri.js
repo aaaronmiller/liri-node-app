@@ -13,7 +13,7 @@ input = input + process.argv.slice(3).join(" ");
 // if (typeof(input) === "") {
 //     console.log("bad");
 //     input = "booger";
-inputlog = action + "," + input + ","   ;
+inputlog = action + ", " + input + ", "   ;
 fs.appendFile('message.txt', inputlog, function (err) {
     if (err) throw err;
     console.log('Saved!');
@@ -36,7 +36,7 @@ function concert(input) {
             console.log("\nCity: " + response.data[0].venue.city)
             console.log("\nDate and time: " + response.data[0].datetime)
           console.log("\n----------------------------");
-          responselog =  + response.data[0].venue.name + response.data[0].venue.city + response.data[0].datetime;
+          responselog =  response.data[0].venue.name + ", "  + response.data[0].venue.city + ", "  + response.data[0].datetime + ", " ;
           fs.appendFile('message.txt', responselog, function (err) {
                 if (err) throw err;
                 console.log('Saved!');
@@ -58,7 +58,7 @@ function spotifysearch(input) {
             console.log("\nAlbum Name: " + data.tracks.items[0].album.name)
             console.log("\nPreview link on Spotify: " + data.tracks.items[0].preview_url);
             console.log("\n----------------------------");
-            responselog =  + data.tracks.items[0].artists[0].name + data.tracks.items[0].name + data.tracks.items[0].album.name + data.tracks.items[0].preview_url;
+            responselog =  data.tracks.items[0].artists[0].name + ", "  + data.tracks.items[0].name + ", "  + data.tracks.items[0].album.name + ", "  + data.tracks.items[0].preview_url + ", " ;
             fs.appendFile('message.txt', responselog, function (err) {
                 if (err) throw err;
                 console.log('Saved!');
@@ -82,7 +82,7 @@ function moviesearch(input) {
         console.log("\nPlot: " + response.data.Plot)
         console.log("\nActors in this movie: " + response.data.Actors)
         console.log("\n----------------------------");
-        responselog = response.data.Title + response.data.Year + response.data.imdbRating + response.data.Ratings[1].Value + response.data.Country + response.data.Language + response.data.Plot + response.data.Actors;
+        responselog = response.data.Title + ", "  + response.data.Year + ", "  + response.data.imdbRating + ", "  + response.data.Ratings[1].Value + ", "  + response.data.Country + ", "  + response.data.Language + ", "  + response.data.Plot + ", "  + response.data.Actors + ", " ;
         fs.appendFile('message.txt', responselog, function (err) {
             if (err) throw err;
             console.log('Saved!');

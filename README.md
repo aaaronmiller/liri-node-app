@@ -3,12 +3,11 @@ This project is a siri clone, except for a command line interface. It will take 
 
 Getting Started
 To run the program, first install the correct dependencies with npm. A package.json file is supplied. You will need to provide your own API keys and place them in the keys.js file with the following syntax:
---------------------------
+
 # Spotify API keys
 
 SPOTIFY_ID=your-spotify-id
 SPOTIFY_SECRET=your-spotify-secret
----------------------------
 
 Prerequisites
 Node.js must be installed on machine. See https://nodejs.org/en/download/ for instructions.
